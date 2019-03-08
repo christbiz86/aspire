@@ -15,8 +15,9 @@ class CreateRepaymentsTable extends Migration
     {
         Schema::create('repayments', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->integer('userId');
+            $table->bigInteger('loansId')->unsigned();
             $table->timestamps();
+            $table->foreign('loansId')->references('id')->on('loans');
         });
     }
 

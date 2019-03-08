@@ -15,7 +15,7 @@ class CreateLoansTable extends Migration
     {
         Schema::create('loans', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->integer('userId');
+            $table->bigInteger('userId')->unsigned();
             $table->bigInteger('amount');
             $table->double('repayment');
             $table->bigInteger('arrangementFee')->nullable();
@@ -23,6 +23,7 @@ class CreateLoansTable extends Migration
             $table->integer('duration');
             $table->string('status');
             $table->timestamps();
+            $table->foreign('userId')->references('id')->on('users');
         });
     }
 
